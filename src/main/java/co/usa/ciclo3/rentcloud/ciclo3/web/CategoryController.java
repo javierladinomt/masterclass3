@@ -1,7 +1,7 @@
 package co.usa.ciclo3.rentcloud.ciclo3.web;
 
-import co.usa.ciclo3.rentcloud.ciclo3.model.Cloud;
-import co.usa.ciclo3.rentcloud.ciclo3.service.CloudService;
+import co.usa.ciclo3.rentcloud.ciclo3.model.Category;
+import co.usa.ciclo3.rentcloud.ciclo3.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,25 +10,25 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/Cloud")
+@RequestMapping("/api/Category")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-public class CloudController {
+public class CategoryController {
 
     @Autowired
-    private CloudService cloudService;
+    private CategoryService categoryService;
 
     @GetMapping("/all")
-    public List<Cloud> getClouds(){
-        return cloudService.getAll();
+    public List<Category> getCategory(){
+        return categoryService.getAll();
     }
     @GetMapping("/{id}")
-    public Optional<Cloud> getCloud(@PathVariable ("id") int id){
-        return cloudService.getCloud(id);
+    public Optional<Category> getCategory(@PathVariable ("id") int id){
+        return categoryService.getCategory(id);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Cloud save(@RequestBody Cloud c){
-        return cloudService.save(c);
+    public Category save(@RequestBody Category c){
+        return categoryService.save(c);
     }
 }

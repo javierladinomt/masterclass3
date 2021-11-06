@@ -8,21 +8,39 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author JALP
+ */
 @Repository
 public class CloudRepository {
 
     @Autowired
-    private CloudCrudRepository cloudCrudRepository;
+    private CloudCrudRepository repository;
+
+    /**
+     * SELECT * FROM CLOUD
+     * @return Retorna todos las nubes
+     */
 
     public List<Cloud> getAll(){
-        return (List<Cloud>)cloudCrudRepository.findAll();
+        return (List<Cloud>) this.repository.findAll();
     }
 
+    /**
+     * SELECT * FROM CLOUD HERE ID = id
+     * @param id
+     * @return Retorna una nube por su ID especifico
+     */
     public Optional<Cloud> getCloud(int id){
-        return cloudCrudRepository.findById(id);
+        return this.repository.findById(id);
     }
 
-    public Cloud save(Cloud c){
-        return cloudCrudRepository.save(c);
+    /**
+     * INSERT & UPDATE
+     * @param cloud
+     * @return Actualiza o guarda una nube
+     */
+    public Cloud save(Cloud cloud){
+        return this.repository.save(cloud);
     }
 }

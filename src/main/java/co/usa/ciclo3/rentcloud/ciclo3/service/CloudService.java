@@ -26,8 +26,8 @@ public class CloudService {
         if (c.getId()==null){
             return cloudRepository.save(c);
         }else{
-            Optional<Cloud> caux=cloudRepository.getCloud(c.getId());
-            if(caux.isEmpty()){
+            Optional<Cloud> cAux=cloudRepository.getCloud(c.getId());
+            if(cAux.isEmpty()){
                 return cloudRepository.save(c);
             }else{
                 return c;

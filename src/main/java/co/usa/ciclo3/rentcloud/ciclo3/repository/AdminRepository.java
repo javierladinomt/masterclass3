@@ -36,10 +36,10 @@ public class AdminRepository {
 
     /**
      * INSERT & UPDATE
-     * @param admin
+     * @param Admin
      * @return Actualiza o guarda un administrador
      */
-    public Admin save(Admin admin) {
-        return this.repository.save(admin);
+    public Admin save(Admin Admin) {
+        return this.repository.save(Admin);
     }
 }

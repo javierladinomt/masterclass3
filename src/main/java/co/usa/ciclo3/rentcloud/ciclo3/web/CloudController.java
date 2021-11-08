@@ -28,7 +28,7 @@ public class CloudController {
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Cloud save(@RequestBody Cloud c){
-        return cloudService.save(c);
+    public Cloud save(@RequestBody Cloud cloud){
+        return cloudService.save(cloud);
     }
 }

@@ -12,25 +12,25 @@ import java.util.Optional;
 public class ReservationService {
 
     @Autowired
-    private ReservationRepository reservationRepository;
+    private ReservationRepository repository;
 
     public List<Reservation> getAll(){
-        return reservationRepository.getAll();
+        return repository.getAll();
     }
 
-    public Optional<Reservation> getReservation(int id){
-        return reservationRepository.getReservation(id);
+    public Optional<Reservation> getReservation(int reservationId){
+        return repository.getReservation(reservationId);
     }
 
-    public Reservation save(Reservation r){
-        if (r.getIdReservation()==null){
-            return reservationRepository.save(r);
+    public Reservation save(Reservation reservation){
+        if (reservation.getIdReservation()==null){
+            return repository.save(reservation);
         }else{
-            Optional<Reservation> rAux=reservationRepository.getReservation(r.getIdReservation());
-            if(rAux.isEmpty()){
-                return reservationRepository.save(r);
+            Optional<Reservation> existReservation=repository.getReservation(reservation.getIdReservation());
+            if(existReservation.isEmpty()){
+                return repository.save(reservation);
             }else{
-                return r;
+                return reservation;
             }
         }
     }

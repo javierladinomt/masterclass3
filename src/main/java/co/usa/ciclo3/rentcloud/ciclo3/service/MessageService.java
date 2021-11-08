@@ -12,25 +12,25 @@ import java.util.Optional;
 public class MessageService {
 
     @Autowired
-    private MessageRepository messageRepository;
+    private MessageRepository repository;
 
     public List<Message> getAll() {
-        return messageRepository.getAll();
+        return repository.getAll();
     }
 
-    public Optional<Message> getMessage(int id) {
-        return messageRepository.getMessage(id);
+    public Optional<Message> getMessage(int messageId) {
+        return repository.getMessage(messageId);
     }
 
-    public Message save(Message m) {
-        if (m.getIdMessage() == null) {
-            return messageRepository.save(m);
+    public Message save(Message message) {
+        if (message.getIdMessage() == null) {
+            return repository.save(message);
         } else {
-            Optional<Message> mAux = messageRepository.getMessage(m.getIdMessage());
-            if (mAux.isEmpty()) {
-                return messageRepository.save(m);
+            Optional<Message> existMessage = repository.getMessage(message.getIdMessage());
+            if (existMessage.isEmpty()) {
+                return repository.save(message);
             } else {
-                return m;
+                return message;
             }
         }
     }

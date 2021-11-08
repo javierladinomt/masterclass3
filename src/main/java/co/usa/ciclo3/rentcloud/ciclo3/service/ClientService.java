@@ -11,26 +11,25 @@ import java.util.Optional;
 @Service
 public class ClientService {
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientRepository repository;
     public List<Client> getAll(){
-        return clientRepository.getAll();
+        return repository.getAll();
     }
 
-    public Optional<Client> getClient(int id){
-        return clientRepository.getClient(id);
+    public Optional<Client> getClient(int clientId){
+        return repository.getClient(clientId);
     }
 
-    public Client save(Client cl){
-        if (cl.getIdClient()==null){
-            return clientRepository.save(cl);
-        }else{
-            Optional<Client> clAux=clientRepository.getClient(cl.getIdClient());
-            if(clAux.isEmpty()){
-                return clientRepository.save(cl);
-            }else{
-                return cl;
+    public Client save(Client category) {
+        if (category.getIdClient() == null) {
+            return repository.save(category);
+        } else {
+            Optional<Client> existClient = repository.getClient(category.getIdClient());
+            if (existClient.isEmpty()) {
+                return repository.save(category);
+            } else {
+                return category;
             }
         }
     }
-
 }

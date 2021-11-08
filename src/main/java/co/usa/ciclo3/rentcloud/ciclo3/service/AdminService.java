@@ -14,39 +14,39 @@ import java.util.Optional;
 @Service
 public class AdminService {
     @Autowired
-    private AdminRepository adminRepository;
+    private AdminRepository repository;
 
     /**
      *
      * @return Retorna todos los administradores
      */
     public List<Admin> getAll(){
-        return adminRepository.getAll();
+        return repository.getAll();
     }
 
     /**
      * GET/{id}
-     * @param id
+     * @param AdminId
      * @return
      */
-    public Optional<Admin> getAdmin(int id){
-        return adminRepository.getAdmin(id);
+    public Optional<Admin> getAdmin(int AdminId){
+        return repository.getAdmin(AdminId);
     }
 
     /**
      * POST
-     * @param a
+     * @param admin
      * @return
      */
-    public Admin save(Admin a){
-        if(a.getIdAdmin()==null){
-            return adminRepository.save(a);
+    public Admin save(Admin admin){
+        if(admin.getIdAdmin()==null){
+            return repository.save(admin);
         }else{
-            Optional<Admin> aAux=adminRepository.getAdmin(a.getIdAdmin());
-            if(aAux.isEmpty()){
-                return adminRepository.save(a);
+            Optional<Admin> existAdmin=repository.getAdmin(admin.getIdAdmin());
+            if(existAdmin.isEmpty()){
+                return repository.save(admin);
             }else{
-                return a;
+                return admin;
             }
         }
     }

@@ -12,25 +12,25 @@ import java.util.Optional;
 public class CloudService {
 
     @Autowired
-    private CloudRepository cloudRepository;
+    private CloudRepository repository;
 
     public List<Cloud> getAll(){
-        return cloudRepository.getAll();
+        return repository.getAll();
     }
 
-    public Optional<Cloud> getCloud(int id){
-        return cloudRepository.getCloud(id);
+    public Optional<Cloud> getCloud(int CloudId){
+        return repository.getCloud(CloudId);
     }
 
-    public Cloud save(Cloud c){
-        if (c.getId()==null){
-            return cloudRepository.save(c);
+    public Cloud save(Cloud cloud){
+        if (cloud.getId()==null){
+            return repository.save(cloud);
         }else{
-            Optional<Cloud> cAux=cloudRepository.getCloud(c.getId());
-            if(cAux.isEmpty()){
-                return cloudRepository.save(c);
+            Optional<Cloud> existCloud=repository.getCloud(cloud.getId());
+            if(existCloud.isEmpty()){
+                return repository.save(cloud);
             }else{
-                return c;
+                return cloud;
             }
         }
     }

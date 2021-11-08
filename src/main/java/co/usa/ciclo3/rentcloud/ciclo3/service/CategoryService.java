@@ -11,23 +11,23 @@ import java.util.Optional;
 @Service
 public class CategoryService {
     @Autowired
-    private CategoryRepository categoryRepository;
+    private CategoryRepository repository;
 
     public List<Category> getAll(){
-       return categoryRepository.getAll();
+       return repository.getAll();
     }
-    public Optional<Category> getCategory(int id){
-        return categoryRepository.getCategory(id);
+    public Optional<Category> getCategory(int CategoryId){
+        return repository.getCategory(CategoryId);
     }
-    public Category save(Category c){
-        if(c.getId()==null){
-            return categoryRepository.save(c);
+    public Category save(Category Category){
+        if(Category.getId()==null){
+            return repository.save(Category);
         }else{
-            Optional<Category> cAux=categoryRepository.getCategory(c.getId());
-            if(cAux.isEmpty()){
-                return categoryRepository.save(c);
+            Optional<Category> existCategory=repository.getCategory(Category.getId());
+            if(existCategory.isEmpty()){
+                return repository.save(Category);
             }else{
-                return c;
+                return Category;
             }
         }
     }

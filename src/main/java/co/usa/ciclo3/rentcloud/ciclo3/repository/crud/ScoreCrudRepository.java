@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * @author JALP
  */
-public interface ScoreCrudRepository extends CrudRepository {
+public interface ScoreCrudRepository extends CrudRepository<Score,Integer> {
 }

@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * @author JALP
  */
-public interface ClientCrudRepository extends CrudRepository <Client, Integer> {
+public interface ClientCrudRepository extends CrudRepository <Client,Integer> {
 }

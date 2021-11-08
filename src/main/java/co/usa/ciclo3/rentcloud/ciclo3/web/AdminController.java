@@ -15,20 +15,20 @@ import java.util.Optional;
 public class AdminController {
 
         @Autowired
-        private AdminService adminService;
+        private AdminService service;
 
         @GetMapping("/all")
-        public List<Admin> getAdmin(){
-            return adminService.getAll();
+        public List<Admin> getAll(){
+            return service.getAll();
         }
         @GetMapping("/{id}")
-        public Optional<Admin> getAdmin(@PathVariable ("id") int id){
-            return adminService.getAdmin(id);
+        public Optional<Admin> getOne(@PathVariable ("id") int adminId){
+            return service.getAdmin(adminId);
         }
 
         @PostMapping("/save")
         @ResponseStatus(HttpStatus.CREATED)
-        public Admin save(@RequestBody Admin a){
-            return adminService.save(a);
+        public Admin save(@RequestBody Admin admin){
+            return service.save(admin);
         }
 }

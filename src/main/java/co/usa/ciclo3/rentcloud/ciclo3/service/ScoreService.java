@@ -12,25 +12,25 @@ import java.util.Optional;
 public class ScoreService {
 
     @Autowired
-    private ScoreRepository scoreRepository;
+    private ScoreRepository repository;
 
     public List<Score> getAll(){
-        return scoreRepository.getAll();
+        return repository.getAll();
     }
 
-    public Optional<Score> getScore(int id){
-        return scoreRepository.getScore(id);
+    public Optional<Score> getScore(int scoreId){
+        return repository.getScore(scoreId);
     }
 
-    public Score save(Score s){
-        if (s.getIdScore()==null){
-            return scoreRepository.save(s);
+    public Score save(Score score){
+        if (score.getIdScore()==null){
+            return repository.save(score);
         }else{
-            Optional<Score> sAux = scoreRepository.getScore(s.getIdScore());
-            if(sAux.isEmpty()){
-                return scoreRepository.save(s);
+            Optional<Score> existScore = repository.getScore(score.getIdScore());
+            if(existScore.isEmpty()){
+                return repository.save(score);
             }else{
-                return s;
+                return score;
             }
         }
     }

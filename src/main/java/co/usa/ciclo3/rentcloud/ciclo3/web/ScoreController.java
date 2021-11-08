@@ -14,21 +14,21 @@ import java.util.Optional;
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 public class ScoreController {
     @Autowired
-    private ScoreService scoreService;
+    private ScoreService service;
 
     @GetMapping("/all")
-    public List<Score> getScore(){
-        return scoreService.getAll();
+    public List<Score> getAll(){
+        return service.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Score> getScore(@PathVariable ("id") int id){
-        return scoreService.getScore(id);
+    public Optional<Score> getOne(@PathVariable ("id") int scoreId){
+        return service.getScore(scoreId);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Score save(@RequestBody Score score ){
-        return scoreService.save(score);
+        return service.save(score);
     }
 }

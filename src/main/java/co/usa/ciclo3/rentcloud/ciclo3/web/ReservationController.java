@@ -22,8 +22,8 @@ public class ReservationController {
         return service.getAll();
     }
     @GetMapping("/{id}")
-    public Optional<Reservation> getOne(@PathVariable ("id") int id){
-        return service.getReservation(id);
+    public Optional<Reservation> getOne(@PathVariable ("id") int reservationId){
+        return service.getReservation(reservationId);
     }
 
     @PostMapping("/save")

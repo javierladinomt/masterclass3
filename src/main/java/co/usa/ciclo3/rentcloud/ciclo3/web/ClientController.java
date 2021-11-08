@@ -14,20 +14,20 @@ import java.util.Optional;
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 public class ClientController {
     @Autowired
-    private ClientService clientService;
+    private ClientService service;
 
     @GetMapping("/all")
-    public List<Client> getClient(){
-        return clientService.getAll();
+    public List<Client> getAll(){
+        return service.getAll();
     }
     @GetMapping("/{id}")
-    public Optional<Client> getClient(@PathVariable ("id") int id){
-        return clientService.getClient(id);
+    public Optional<Client> getOne(@PathVariable ("id") int clientId){
+        return service.getClient(clientId);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Client save(@RequestBody Client client){
-        return clientService.save(client);
+        return service.save(client);
     }
 }

@@ -15,20 +15,20 @@ import java.util.Optional;
 public class CloudController {
 
     @Autowired
-    private CloudService cloudService;
+    private CloudService service;
 
     @GetMapping("/all")
-    public List<Cloud> getClouds(){
-        return cloudService.getAll();
+    public List<Cloud> getAll(){
+        return service.getAll();
     }
     @GetMapping("/{id}")
-    public Optional<Cloud> getCloud(@PathVariable ("id") int id){
-        return cloudService.getCloud(id);
+    public Optional<Cloud> getOne(@PathVariable ("id") int cloudId){
+        return service.getCloud(cloudId);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Cloud save(@RequestBody Cloud cloud){
-        return cloudService.save(cloud);
+        return service.save(cloud);
     }
 }

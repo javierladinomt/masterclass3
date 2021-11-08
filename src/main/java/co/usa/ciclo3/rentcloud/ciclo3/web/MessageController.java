@@ -14,20 +14,20 @@ import java.util.Optional;
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 public class MessageController {
     @Autowired
-    private MessageService messageService;
+    private MessageService service;
 
     @GetMapping("/all")
-    public List<Message> getMessage(){
-        return messageService.getAll();
+    public List<Message> getAll(){
+        return service.getAll();
     }
     @GetMapping("/{id}")
-    public Optional<Message> getMessage(@PathVariable ("id") int id){
-        return messageService.getMessage(id);
+    public Optional<Message> getOne(@PathVariable ("id") int messageId){
+        return service.getMessage(messageId);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Message save(@RequestBody Message message){
-        return messageService.save(message);
+        return service.save(message);
     }
 }

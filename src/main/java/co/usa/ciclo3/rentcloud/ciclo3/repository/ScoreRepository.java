@@ -27,7 +27,7 @@ public class ScoreRepository {
      * @param id
      * @return Retorna una calificacion por su ID especifico
      */
-    public Optional<Score> getScore(int id){
+    public Optional<Score> getOne(int id){
         return this.repository.findById(id);
     }
     /**

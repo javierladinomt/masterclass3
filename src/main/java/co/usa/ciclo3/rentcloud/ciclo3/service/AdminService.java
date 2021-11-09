@@ -30,7 +30,7 @@ public class AdminService {
      * @return
      */
     public Optional<Admin> getAdmin(int AdminId){
-        return repository.getAdmin(AdminId);
+        return repository.getOne(AdminId);
     }
 
     /**
@@ -42,7 +42,7 @@ public class AdminService {
         if(admin.getIdAdmin()==null){
             return repository.save(admin);
         }else{
-            Optional<Admin> existAdmin=repository.getAdmin(admin.getIdAdmin());
+            Optional<Admin> existAdmin=repository.getOne(admin.getIdAdmin());
             if(existAdmin.isEmpty()){
                 return repository.save(admin);
             }else{

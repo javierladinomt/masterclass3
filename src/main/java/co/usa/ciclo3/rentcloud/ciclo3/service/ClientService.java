@@ -17,14 +17,14 @@ public class ClientService {
     }
 
     public Optional<Client> getClient(int clientId){
-        return repository.getClient(clientId);
+        return repository.getOne(clientId);
     }
 
     public Client save(Client category) {
         if (category.getIdClient() == null) {
             return repository.save(category);
         } else {
-            Optional<Client> existClient = repository.getClient(category.getIdClient());
+            Optional<Client> existClient = repository.getOne(category.getIdClient());
             if (existClient.isEmpty()) {
                 return repository.save(category);
             } else {

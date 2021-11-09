@@ -30,16 +30,16 @@ public class AdminRepository {
      * @param id
      * @return Retorna un administrador por su ID espefifico
      */
-    public Optional<Admin> getAdmin(int id) {
+    public Optional<Admin> getOne(int id) {
         return this.repository.findById(id);
     }
 
     /**
      * INSERT & UPDATE
-     * @param Admin
+     * @param admin
      * @return Actualiza o guarda un administrador
      */
-    public Admin save(Admin Admin) {
-        return this.repository.save(Admin);
+    public Admin save(Admin admin) {
+        return this.repository.save(admin);
     }
 }

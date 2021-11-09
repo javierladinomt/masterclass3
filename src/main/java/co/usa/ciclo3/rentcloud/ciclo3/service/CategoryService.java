@@ -17,13 +17,13 @@ public class CategoryService {
        return repository.getAll();
     }
     public Optional<Category> getCategory(int CategoryId){
-        return repository.getCategory(CategoryId);
+        return repository.getOne(CategoryId);
     }
     public Category save(Category Category){
         if(Category.getId()==null){
             return repository.save(Category);
         }else{
-            Optional<Category> existCategory=repository.getCategory(Category.getId());
+            Optional<Category> existCategory=repository.getOne(Category.getId());
             if(existCategory.isEmpty()){
                 return repository.save(Category);
             }else{

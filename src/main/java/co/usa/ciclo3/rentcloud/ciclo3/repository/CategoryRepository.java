@@ -30,7 +30,7 @@ public class CategoryRepository {
      * @param id
      * @return Retorna una categoria por su ID espedifico
      */
-    public Optional<Category> getCategory(int id) {
+    public Optional<Category> getOne(int id) {
         return this.repository.findById(id);
     }
 

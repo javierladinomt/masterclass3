@@ -30,16 +30,16 @@ public class MessageRepository {
      * @param id
      * @return Retorna un mensaje por su ID especifico
      */
-    public Optional<Message> getMessage(int id) {
+    public Optional<Message> getOne(int id) {
         return this.repository.findById(id);
     }
 
     /**
      * INSERT & UPDATE
-     * @param Message
+     * @param message
      * @return Actualiza o guarda un Mensaje
      */
-    public Message save(Message Message) {
-        return this.repository.save(Message);
+    public Message save(Message message) {
+        return this.repository.save(message);
     }
 }

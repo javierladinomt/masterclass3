@@ -19,14 +19,14 @@ public class MessageService {
     }
 
     public Optional<Message> getMessage(int messageId) {
-        return repository.getMessage(messageId);
+        return repository.getOne(messageId);
     }
 
     public Message save(Message message) {
         if (message.getIdMessage() == null) {
             return repository.save(message);
         } else {
-            Optional<Message> existMessage = repository.getMessage(message.getIdMessage());
+            Optional<Message> existMessage = repository.getOne(message.getIdMessage());
             if (existMessage.isEmpty()) {
                 return repository.save(message);
             } else {

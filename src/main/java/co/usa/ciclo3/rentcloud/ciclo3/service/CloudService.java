@@ -19,14 +19,14 @@ public class CloudService {
     }
 
     public Optional<Cloud> getCloud(int CloudId){
-        return repository.getCloud(CloudId);
+        return repository.getOne(CloudId);
     }
 
     public Cloud save(Cloud cloud){
         if (cloud.getId()==null){
             return repository.save(cloud);
         }else{
-            Optional<Cloud> existCloud=repository.getCloud(cloud.getId());
+            Optional<Cloud> existCloud=repository.getOne(cloud.getId());
             if(existCloud.isEmpty()){
                 return repository.save(cloud);
             }else{

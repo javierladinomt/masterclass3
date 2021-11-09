@@ -19,14 +19,14 @@ public class ReservationService {
     }
 
     public Optional<Reservation> getReservation(int reservationId){
-        return repository.getReservation(reservationId);
+        return repository.getOne(reservationId);
     }
 
     public Reservation save(Reservation reservation){
         if (reservation.getIdReservation()==null){
             return repository.save(reservation);
         }else{
-            Optional<Reservation> existReservation=repository.getReservation(reservation.getIdReservation());
+            Optional<Reservation> existReservation=repository.getOne(reservation.getIdReservation());
             if(existReservation.isEmpty()){
                 return repository.save(reservation);
             }else{

@@ -31,7 +31,7 @@ public class CloudRepository {
      * @param id
      * @return Retorna una nube por su ID especifico
      */
-    public Optional<Cloud> getCloud(int id){
+    public Optional<Cloud> getOne(int id){
         return this.repository.findById(id);
     }
 

@@ -19,14 +19,14 @@ public class ScoreService {
     }
 
     public Optional<Score> getScore(int scoreId){
-        return repository.getScore(scoreId);
+        return repository.getOne(scoreId);
     }
 
     public Score save(Score score){
         if (score.getIdScore()==null){
             return repository.save(score);
         }else{
-            Optional<Score> existScore = repository.getScore(score.getIdScore());
+            Optional<Score> existScore = repository.getOne(score.getIdScore());
             if(existScore.isEmpty()){
                 return repository.save(score);
             }else{

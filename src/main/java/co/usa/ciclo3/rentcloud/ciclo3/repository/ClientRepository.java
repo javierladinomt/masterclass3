@@ -30,7 +30,7 @@ public class ClientRepository {
      * @param id
      * @return Retorna un cliente por su ID especifico
      */
-    public Optional<Client> getClient(int id){
+    public Optional<Client> getOne(int id){
         return this.repository.findById(id);
     }
 

@@ -29,16 +29,16 @@ public class ReservationRepository {
      * @param id
      * @return Retorna una reserva por su ID especifico
      */
-    public Optional<Reservation> getReservation(int id) {
+    public Optional<Reservation> getOne(int id) {
         return this.repository.findById(id);
     }
 
     /**
      * INSERT & UPDATE
-     * @param Reservation
+     * @param reservation
      * @return Actualiza o guarda una reserva
      */
-    public Reservation save(Reservation Reservation) {
-        return this.repository.save(Reservation);
+    public Reservation save(Reservation reservation) {
+        return this.repository.save(reservation);
     }
 }

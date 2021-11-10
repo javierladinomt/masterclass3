@@ -1,5 +1,6 @@
 package co.usa.ciclo3.rentcloud.ciclo3.web;
 
+import co.usa.ciclo3.rentcloud.ciclo3.model.Admin;
 import co.usa.ciclo3.rentcloud.ciclo3.model.Client;
 import co.usa.ciclo3.rentcloud.ciclo3.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,17 @@ public class ClientController {
     @ResponseStatus(HttpStatus.CREATED)
     public Client save(@RequestBody Client client){
         return service.save(client);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Client update(@RequestBody Client client){
+        return service.update(client);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int clientId){
+        return service.delete(clientId);
     }
 }

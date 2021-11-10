@@ -1,5 +1,6 @@
 package co.usa.ciclo3.rentcloud.ciclo3.repository;
 
+import co.usa.ciclo3.rentcloud.ciclo3.model.Category;
 import co.usa.ciclo3.rentcloud.ciclo3.model.Client;
 import co.usa.ciclo3.rentcloud.ciclo3.repository.crud.ClientCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,13 @@ public class ClientRepository {
      */
     public Client save(Client client){
         return this.repository.save(client);
+    }
+
+    /**
+     * DELETE FROM TABLE
+     * @param client
+     */
+    public void delete(Client client){
+        this.repository.delete(client);
     }
 }

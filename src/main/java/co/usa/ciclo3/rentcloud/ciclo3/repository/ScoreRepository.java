@@ -1,5 +1,6 @@
 package co.usa.ciclo3.rentcloud.ciclo3.repository;
 
+import co.usa.ciclo3.rentcloud.ciclo3.model.Category;
 import co.usa.ciclo3.rentcloud.ciclo3.model.Score;
 import co.usa.ciclo3.rentcloud.ciclo3.repository.crud.ScoreCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,13 @@ public class ScoreRepository {
      */
     public Score save(Score score){
         return (Score) this.repository.save(score);
+    }
+
+    /**
+     * DELETE FROM TABLE
+     * @param score
+     */
+    public void delete(Score score){
+        this.repository.delete(score);
     }
 }

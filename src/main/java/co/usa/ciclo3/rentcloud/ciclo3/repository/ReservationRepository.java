@@ -1,5 +1,6 @@
 package co.usa.ciclo3.rentcloud.ciclo3.repository;
 
+import co.usa.ciclo3.rentcloud.ciclo3.model.Category;
 import co.usa.ciclo3.rentcloud.ciclo3.model.Reservation;
 import co.usa.ciclo3.rentcloud.ciclo3.repository.crud.ReservationCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,13 @@ public class ReservationRepository {
      */
     public Reservation save(Reservation reservation) {
         return this.repository.save(reservation);
+    }
+
+    /**
+     * DELETE FROM TABLE
+     * @param reservation
+     */
+    public void delete(Reservation reservation){
+        this.repository.delete(reservation);
     }
 }

@@ -1,5 +1,6 @@
 package co.usa.ciclo3.rentcloud.ciclo3.web;
 
+import co.usa.ciclo3.rentcloud.ciclo3.model.Admin;
 import co.usa.ciclo3.rentcloud.ciclo3.model.Reservation;
 import co.usa.ciclo3.rentcloud.ciclo3.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,17 @@ public class ReservationController {
     @ResponseStatus(HttpStatus.CREATED)
     public Reservation save(@RequestBody Reservation reservation){
         return service.save(reservation);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Reservation update(@RequestBody Reservation reservation){
+        return service.update(reservation);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int reservationId){
+        return service.delete(reservationId);
     }
 }

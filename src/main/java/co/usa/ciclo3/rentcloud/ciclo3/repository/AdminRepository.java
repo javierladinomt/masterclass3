@@ -42,4 +42,12 @@ public class AdminRepository {
     public Admin save(Admin admin) {
         return this.repository.save(admin);
     }
+
+    /**
+     * DELETE FROM TABLE
+     * @param admin
+     */
+    public void delete(Admin admin){
+        this.repository.delete(admin);
+    }
 }

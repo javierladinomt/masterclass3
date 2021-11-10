@@ -1,5 +1,6 @@
 package co.usa.ciclo3.rentcloud.ciclo3.repository;
 
+import co.usa.ciclo3.rentcloud.ciclo3.model.Category;
 import co.usa.ciclo3.rentcloud.ciclo3.model.Message;
 import co.usa.ciclo3.rentcloud.ciclo3.repository.crud.MessageCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,13 @@ public class MessageRepository {
      */
     public Message save(Message message) {
         return this.repository.save(message);
+    }
+
+    /**
+     * DELETE FROM TABLE
+     * @param message
+     */
+    public void delete(Message message){
+        this.repository.delete(message);
     }
 }

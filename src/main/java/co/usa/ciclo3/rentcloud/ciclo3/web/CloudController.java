@@ -1,5 +1,6 @@
 package co.usa.ciclo3.rentcloud.ciclo3.web;
 
+import co.usa.ciclo3.rentcloud.ciclo3.model.Admin;
 import co.usa.ciclo3.rentcloud.ciclo3.model.Cloud;
 import co.usa.ciclo3.rentcloud.ciclo3.service.CloudService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,17 @@ public class CloudController {
     @ResponseStatus(HttpStatus.CREATED)
     public Cloud save(@RequestBody Cloud cloud){
         return service.save(cloud);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Cloud update(@RequestBody Cloud cloud){
+        return service.update(cloud);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int cloudId){
+        return service.delete(cloudId);
     }
 }

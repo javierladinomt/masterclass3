@@ -42,4 +42,12 @@ public class CategoryRepository {
     public Category save(Category category){
         return this.repository.save(category);
     }
+
+    /**
+     * DELETE FROM TABLE
+     * @param category
+     */
+    public void delete(Category category){
+        this.repository.delete(category);
+    }
 }

@@ -32,4 +32,43 @@ public class ClientService {
             }
         }
     }
+
+    public Client update(Client client){
+        if (client.getIdClient() != null){
+            Optional<Client> existClient = repository.getOne(client.getIdClient());
+            if (existClient.isPresent()){
+                if (client.getName() != null){
+                    existClient.get().setName(client.getName());
+                }
+                if (client.getEmail() != null){
+                    existClient.get().setEmail(client.getEmail());
+                }
+                if (client.getMessages() != null){
+                    existClient.get().setMessages(client.getMessages());
+                }
+                if (client.getAge() != null){
+                    existClient.get().setAge(client.getAge());
+                }
+                if (client.getPassword() != null){
+                    existClient.get().setPassword(client.getPassword());
+                }
+                if (client.getReservations() != null){
+                    existClient.get().setReservations(client.getReservations());
+                }
+                return repository.save(existClient.get());
+            }else{
+                return client;
+            }
+        }else{
+            return client;
+        }
+    }
+
+    public boolean delete(int clientId){
+        Boolean response = getClient(clientId).map(client -> {
+            repository.delete(client);
+            return true;
+        }).orElse(false);
+        return response;
+    }
 }

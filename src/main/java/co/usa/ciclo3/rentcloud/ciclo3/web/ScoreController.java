@@ -1,5 +1,6 @@
 package co.usa.ciclo3.rentcloud.ciclo3.web;
 
+import co.usa.ciclo3.rentcloud.ciclo3.model.Admin;
 import co.usa.ciclo3.rentcloud.ciclo3.model.Score;
 import co.usa.ciclo3.rentcloud.ciclo3.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,17 @@ public class ScoreController {
     @ResponseStatus(HttpStatus.CREATED)
     public Score save(@RequestBody Score score ){
         return service.save(score);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Score update(@RequestBody Score score){
+        return service.update(score);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int scoreId){
+        return service.delete(scoreId);
     }
 }

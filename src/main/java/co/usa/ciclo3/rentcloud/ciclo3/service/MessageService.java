@@ -34,4 +34,34 @@ public class MessageService {
             }
         }
     }
+
+    public Message update(Message message){
+        if (message.getIdMessage() != null){
+            Optional<Message> existMessage = repository.getOne(message.getIdMessage());
+            if (existMessage.isPresent()){
+                if (message.getMessageText() != null){
+                    existMessage.get().setMessageText(message.getMessageText());
+                }
+                if (message.getClient() != null){
+                    existMessage.get().setClient(message.getClient());
+                }
+                if (message.getCloud() != null){
+                    existMessage.get().setCloud(message.getCloud());
+                }
+                return repository.save(existMessage.get());
+            }else{
+                return message;
+            }
+        }else {
+            return message;
+        }
+    }
+
+    public boolean delete(int messageId){
+        Boolean response = getMessage(messageId).map(message -> {
+            repository.delete(message);
+            return true;
+        }).orElse(false);
+        return response;
+    }
 }

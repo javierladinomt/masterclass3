@@ -1,5 +1,6 @@
 package co.usa.ciclo3.rentcloud.ciclo3.repository;
 
+import co.usa.ciclo3.rentcloud.ciclo3.model.Category;
 import co.usa.ciclo3.rentcloud.ciclo3.model.Cloud;
 import co.usa.ciclo3.rentcloud.ciclo3.repository.crud.CloudCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,13 @@ public class CloudRepository {
      */
     public Cloud save(Cloud cloud){
         return this.repository.save(cloud);
+    }
+
+    /**
+     * DELETE FROM TABLE
+     * @param cloud
+     */
+    public void delete(Cloud cloud){
+        this.repository.delete(cloud);
     }
 }

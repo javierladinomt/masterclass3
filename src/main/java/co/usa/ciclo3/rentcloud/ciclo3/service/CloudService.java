@@ -34,4 +34,46 @@ public class CloudService {
             }
         }
     }
+
+    public Cloud update(Cloud cloud){
+        if (cloud.getId() != null){
+            Optional<Cloud> existCloud = repository.getOne(cloud.getId());
+            if (existCloud.isPresent()){
+                if (cloud.getName() != null){
+                    existCloud.get().setName(cloud.getName());
+                }
+                if (cloud.getBrand() != null){
+                    existCloud.get().setBrand(cloud.getBrand());
+                }
+                if (cloud.getMessages() != null){
+                    existCloud.get().setMessages(cloud.getMessages());
+                }
+                if (cloud.getCategory() != null){
+                    existCloud.get().setCategory(cloud.getCategory());
+                }
+                if (cloud.getDescription() != null){
+                    existCloud.get().setReservations(cloud.getReservations());
+                }
+                if (cloud.getReservations() != null){
+                    existCloud.get().setReservations(cloud.getReservations());
+                }
+                if (cloud.getYear() != null){
+                    existCloud.get().setYear(cloud.getYear());
+                }
+                return repository.save(existCloud.get());
+            }else{
+                return cloud;
+            }
+        }else{
+            return cloud;
+        }
+    }
+
+    public boolean delete(int cloudId) {
+        Boolean response = getCloud(cloudId).map(cloud -> {
+            repository.delete(cloud);
+            return true;
+        }).orElse(false);
+        return response;
+    }
 }

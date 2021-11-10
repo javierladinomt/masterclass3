@@ -16,19 +16,50 @@ public class CategoryService {
     public List<Category> getAll(){
        return repository.getAll();
     }
-    public Optional<Category> getCategory(int CategoryId){
-        return repository.getOne(CategoryId);
+
+    public Optional<Category> getCategory(int categoryId){
+        return repository.getOne(categoryId);
     }
-    public Category save(Category Category){
-        if(Category.getId()==null){
-            return repository.save(Category);
+
+    public Category save(Category category){
+        if(category.getId()==null){
+            return repository.save(category);
         }else{
-            Optional<Category> existCategory=repository.getOne(Category.getId());
+            Optional<Category> existCategory=repository.getOne(category.getId());
             if(existCategory.isEmpty()){
-                return repository.save(Category);
+                return repository.save(category);
             }else{
-                return Category;
+                return category;
             }
         }
+    }
+    public Category update(Category category){
+        if (category.getId() != null){
+            Optional<Category> existCategory = repository.getOne(category.getId());
+            if (existCategory.isPresent()){
+                if (category.getName() != null){
+                    existCategory.get().setName(category.getName());
+                }
+                if (category.getDescription() != null){
+                    existCategory.get().setDescription(category.getDescription());
+                }
+                if (category.getClouds() != null){
+                    existCategory.get().setClouds(category.getClouds());
+                }
+                return repository.save(existCategory.get());
+            }else{
+                return category;
+            }
+        }else{
+            return category;
+        }
+    }
+
+    public boolean delete(int categoryId){
+        Boolean response = getCategory(categoryId).map(category -> {
+            repository.delete(category);
+            return true;
+        }).orElse(false);
+        return response;
     }
 }

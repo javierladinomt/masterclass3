@@ -52,7 +52,7 @@ public class CloudService {
                     existCloud.get().setCategory(cloud.getCategory());
                 }
                 if (cloud.getDescription() != null){
-                    existCloud.get().setReservations(cloud.getReservations());
+                    existCloud.get().setDescription(cloud.getDescription());
                 }
                 if (cloud.getReservations() != null){
                     existCloud.get().setReservations(cloud.getReservations());

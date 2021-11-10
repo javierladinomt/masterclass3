@@ -2,9 +2,15 @@ package co.usa.ciclo3.rentcloud.ciclo3.service;
 
 import co.usa.ciclo3.rentcloud.ciclo3.model.Reservation;
 import co.usa.ciclo3.rentcloud.ciclo3.repository.ReservationRepository;
+import co.usa.ciclo3.rentcloud.ciclo3.reports.ReservationStatus;
+import co.usa.ciclo3.rentcloud.ciclo3.reports.ClientsCounter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,5 +78,32 @@ public class ReservationService {
             return true;
         }).orElse(false);
         return response;
+    }
+
+    public ReservationStatus getReservationStatusReport(){
+        List<Reservation>completed = repository.StatusReservation("completed");
+        List<Reservation>cancelled = repository.StatusReservation("cacelled");
+        return new ReservationStatus(completed.size(), cancelled.size());
+    }
+
+    public List<Reservation> getTimeReservationReport(String dateA,String dateB){
+        SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateOne = new Date();
+        Date dateTwo = new Date();
+
+        try{
+            dateOne = parser.parse(dateA);
+            dateTwo = parser.parse(dateB);
+        }catch(ParseException evt){
+            evt.printStackTrace();
+        }if(dateOne.before(dateTwo)){
+            return repository.ReservationTime(dateOne, dateTwo);
+        }else{
+            return new ArrayList<>();
+        }
+    }
+
+    public List<ClientsCounter> serviceTopClients(){
+        return repository.getTopClients();
     }
 }

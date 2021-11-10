@@ -1,6 +1,7 @@
 package co.usa.ciclo3.rentcloud.ciclo3.web;
 
-import co.usa.ciclo3.rentcloud.ciclo3.model.Admin;
+import co.usa.ciclo3.rentcloud.ciclo3.reports.ClientsCounter;
+import co.usa.ciclo3.rentcloud.ciclo3.reports.ReservationStatus;
 import co.usa.ciclo3.rentcloud.ciclo3.model.Reservation;
 import co.usa.ciclo3.rentcloud.ciclo3.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,19 @@ public class ReservationController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int reservationId){
         return service.delete(reservationId);
+    }
+
+    @GetMapping("/report-status")
+    public ReservationStatus getReservation(){
+        return service.getReservationStatusReport();
+    }
+
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getReservationTime (@PathVariable("dateOne")String dateOne, @PathVariable("dateTwo")String dateTwo) {
+        return service.getTimeReservationReport(dateOne, dateTwo);
+    }
+    @GetMapping("report-clients")
+    public List<ClientsCounter> getClients(){
+        return service.serviceTopClients();
     }
 }
